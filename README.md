@@ -7,6 +7,11 @@ dump cells and clusters into ntuple
 - [GepOutputReader](https://gitlab.cern.ch/mmazza/gep-output-reader) -- checkout this package.
 
 # Setup  
+## directory strucutres   
+install everything under `software/`  
+e.g `software/`  
+    `        |_/build`  
+    `        |_/GepOutputReader`
 
 ## athena  
 `setupATLAS --quiet`  
