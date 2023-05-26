@@ -13,18 +13,17 @@ include("InDetSLHC_Example/preInclude.SLHC_Calorimeter_mu200.py")
 
 
 if not "FilesInput" in dir():
-    FilesInput=glob.glob("../../mc15_14TeV/mc15_14TeV.600012.PhPy8EG_A14_ttbar_hdamp258p75_nonallhad.recon.AOD.e8185_s3770_s3773_r13644/*pool.root.1")
+    FilesInput=glob.glob("../../mc15_14TeV/mc15_14TeV.600012.PhPy8EG_A14_ttbar_hdamp258p75_nonallhad.recon.AOD.e8185_s3770_s3773_r13618/*pool.root.1")
     
 #Input file
-#from PyUtils import AthFile
-#import AthenaPoolCnvSvc.ReadAthenaPool                 #sets up reading of POOL files (e.g. xAODs)
-#from AthenaCommon.AthenaCommonFlags import athenaCommonFlags
-#svcMgr.EventSelector.InputCollections=files
+from PyUtils import AthFile
+import AthenaPoolCnvSvc.ReadAthenaPool                 #sets up reading of POOL files (e.g. xAODs)
+from AthenaCommon.AthenaCommonFlags import athenaCommonFlags
+#svcMgr.EventSelector.InputCollections=FilesInput
 #athenaCommonFlags.FilesInput = svcMgr.EventSelector.InputCollections
 #include( "RecExCommon/ContainerRemapping.py" )
 
 jps.AthenaCommonFlags.FilesInput = FilesInput
-#svcMgr.EventSelector.InputCollections=FilesInput
 
 
     
@@ -54,8 +53,8 @@ getEventInfo = True
 # Choose the algorithms to run
 topoclAlgs=['Calo422', 'Calo420']
 puSupprAlgs=['', 'SK']
-jetAlgs=[]
-
+jetAlgs=['AntiKt4']
+aodJets=['AntiKt4EMTopoJets']
 svcMgr.THistSvc.MaxFileSize = -1 #disable check for perf improvement
 
 # Add the respective sequences to the main sequence.
@@ -74,6 +73,7 @@ setupGepOutputReaderSequence( produceCaloCellsMap=produceCaloCellsMap,
                               produceNtuples=produceNtuples,
                               topoclAlgs=topoclAlgs,
                               jetAlgs=jetAlgs,
+                              aodJetContainers=aodJets,
                               puSupprAlgs=puSupprAlgs,
                               getCellsInfo=getCellsInfo,
                               getEventInfo=getEventInfo )
